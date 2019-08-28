@@ -3,8 +3,6 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all
-
-    TeamMailer.send_report.deliver_later
   end
 
   def show

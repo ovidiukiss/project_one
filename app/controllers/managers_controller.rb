@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ManagersController < ApplicationController
   before_action :set_manager, only: %i[show update]
 
@@ -23,7 +25,6 @@ class ManagersController < ApplicationController
       handle_error(@manager.errors)
     end
   end
-
 
   private
 

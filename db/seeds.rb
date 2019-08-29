@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -9,9 +11,9 @@
 Team.delete_all
 teams = Team.create(
   [
-    { name: "Real Madrid Football Club" },
-    { name: 'FC Barcelona', abbreviation: 'Barca'},
-    { name: 'Bayern Munich', abbreviation: 'FCB'}
+    { name: 'Real Madrid Football Club' },
+    { name: 'FC Barcelona', abbreviation: 'Barca' },
+    { name: 'Bayern Munich', abbreviation: 'FCB' }
   ]
 )
 
@@ -22,19 +24,16 @@ end
 Manager.create(
   [
     { first_name: Faker::FunnyName.name.split(' ').first,
-      last_name:Faker::FunnyName.name.split(' ').last,
+      last_name: Faker::FunnyName.name.split(' ').last,
       age: Faker::Number.between(from: 40, to: 60),
-      team_id: teams[0].id
-    },
+      team_id: teams[0].id },
     { first_name: Faker::FunnyName.name.split(' ').first,
-      last_name:Faker::FunnyName.name.split(' ').last,
+      last_name: Faker::FunnyName.name.split(' ').last,
       age: Faker::Number.between(from: 40, to: 60),
-      team_id: teams[1].id
-    },
+      team_id: teams[1].id },
     { first_name: Faker::FunnyName.name.split(' ').first,
-      last_name:Faker::FunnyName.name.split(' ').last,
+      last_name: Faker::FunnyName.name.split(' ').last,
       age: Faker::Number.between(from: 40, to: 60),
-      team_id: teams[2].id
-    },
+      team_id: teams[2].id }
   ]
 )

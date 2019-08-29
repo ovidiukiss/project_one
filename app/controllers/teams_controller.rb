@@ -1,12 +1,21 @@
+# frozen_string_literal: true
+
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[update show destroy]
+  before_action :set_team, only: %i[update show destroy download_logo]
 
   def index
     @teams = Team.all
+
+    TeamMailer.send_report.deliver_later
   end
 
   def show
     head :not_found unless @team.present?
+  end
+
+  def download_logo
+    # send_data(@team.logo.download, filename: 'logo.jpg')
+    redirect_to rails_blob_url(@team.logo)
   end
 
   def create
@@ -42,7 +51,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :abbreviation)
+    params.require(:team).permit(:name, :abbreviation, :logo)
   end
 
   def set_team

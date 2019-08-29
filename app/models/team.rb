@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class Team < ApplicationRecord
   validates_presence_of :name
   validates_uniqueness_of :name
-
   before_create :add_abbreviation_from_name!
+
+  has_one :manager
+  has_one_attached :logo
 
   def add_abbreviation_from_name!
     return if abbreviation

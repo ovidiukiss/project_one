@@ -68,6 +68,9 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    image_processing (1.9.3)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.13, < 3)
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -164,6 +167,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
+    ruby-vips (2.0.14)
+      ffi (~> 1.9)
     ruby_dep (1.5.0)
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
@@ -200,6 +205,7 @@ DEPENDENCIES
   csv
   factory_bot_rails
   faker
+  image_processing
   jbuilder (~> 2.5)
   letter_opener
   listen (>= 3.0.5, < 3.2)

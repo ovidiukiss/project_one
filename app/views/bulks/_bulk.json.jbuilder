@@ -1,0 +1,1 @@
+json.extract! bulk, :id, :filename, :content_type

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_163745) do
+ActiveRecord::Schema.define(version: 2019_09_01_104453) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 2019_08_28_163745) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "bulks", force: :cascade do |t|
+    t.string "name"
+    t.string "filename"
+    t.string "content_type"
+  end
+
   create_table "managers", force: :cascade do |t|
     t.integer "team_id"
     t.string "first_name"
@@ -40,6 +46,13 @@ ActiveRecord::Schema.define(version: 2019_08_28_163745) do
     t.integer "age"
     t.string "description"
     t.index ["team_id"], name: "index_managers_on_team_id"
+  end
+
+  create_table "many_attachments", force: :cascade do |t|
+    t.string "filename"
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|

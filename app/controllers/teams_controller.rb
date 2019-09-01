@@ -20,6 +20,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    #@team.logo.attach(params[:logo])
 
     if @team.save
       render :show, status: :created
@@ -51,7 +52,8 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :abbreviation, :logo)
+    params.require(:name)
+    params.permit(:name, :abbreviation, logo: [])
   end
 
   def set_team

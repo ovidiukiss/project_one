@@ -14,13 +14,13 @@ class TeamsController < ApplicationController
   end
 
   def download_logo
-    # send_data(@team.logo.download, filename: 'logo.jpg')
-    redirect_to rails_blob_url(@team.logo)
+    send_data(@team.logo.download, filename: 'logo.jpg')
+    #redirect_to rails_blob_url(@team.logo)
   end
 
   def create
     @team = Team.new(team_params)
-    #@team.logo.attach(params[:logo])
+    @team.logo.attach(params[:logo])
 
     if @team.save
       render :show, status: :created

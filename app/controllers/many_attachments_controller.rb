@@ -1,5 +1,5 @@
 class ManyAttachmentsController < ApplicationController
-  before_action only: %i[show create index]
+  before_action :set_many, only: %i[show create index]
 
   def index
     @many = ManyAttachment.all
@@ -10,15 +10,11 @@ class ManyAttachmentsController < ApplicationController
   end
 
   def create
-    #@many = ManyAttachment.new
-    # ManyAttachment.last.image.attachments.first.download
 
     @many = ManyAttachment.create!
     params[:image].values.each do | values |
       @many.image.attach(values)
-      #redirect_to rails_blob_url(message.image.attachments.first)
     end
-    #redirect_to message
     if @many.blank?
       handle_error(@many.errors)
     else
@@ -28,11 +24,17 @@ class ManyAttachmentsController < ApplicationController
 
   private
 
+  def permitted_params
+    params.permit(:id)
+  end
+
   def extracted_params
     {
       image: params[:image]
-      # filename: params[:image].original_filename,
-      # content_type: params[:image].content_type
     }
+  end
+
+  def set_many
+    @many = ManyAttachment.find(permitted_params[:id])
   end
 end

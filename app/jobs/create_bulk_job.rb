@@ -1,9 +1,9 @@
 class CreateBulkJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform(id)
     @error = 0
-    file_data = Bulk.last.file.download
+    file_data = Bulk.find_by(id: id).file.download
     teams = CSV.parse(file_data, col_sep: ',', headers: true)
     teams.each do |action|
       x = action.to_h

@@ -23,7 +23,7 @@ class BulksController < ApplicationController
 
   def read_csv
     if params[:file].content_type.include?('csv')
-      CreateBulkJob.perform_now
+      CreateBulkJob.perform_now(@bulk.id)
     else
       logger.error "File type not csv"
     end

@@ -60,7 +60,11 @@ class TeamsController < ApplicationController
 
   def read_csv(file)
     if params[:file].content_type.include?('csv')
-      TeamUpdateJob.perform_now(file)
+      if CSV.parse(file.open, col_sep: ',', headers: true).count > 1000
+        TeamUpdateJob.perform_later(file)
+      else
+        TeamUpdateJob.perform_now(file)
+        end
     else
       logger.error "File type not csv"
     end
